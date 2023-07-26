@@ -12,8 +12,11 @@ describe("CalcService", () => {
     console.log("Before Each is called")
     //shared = new SharedService();
     //calc = new CalcService(shared);
+    shared = jasmine.createSpyObj("SharedService", ["mySharedFunction"]);
     TestBed.configureTestingModule({
-      providers: [CalcService, SharedService]
+      providers: [CalcService, {
+        provide: SharedService, useValue: shared
+      }]
     });
     shared = TestBed.inject(SharedService);
     calc = TestBed.inject(CalcService)
