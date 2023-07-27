@@ -9,6 +9,8 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
@@ -136,4 +138,16 @@ describe('AppComponent', () => {
     tick(3000);
     expect(counter).toBe(6);
   }));
+
+  it('should test the observable', fakeAsync(() => {
+    let isSubscribed = false;
+    let myObs = of(isSubscribed).pipe(delay(1000));
+    
+    myObs.subscribe(() => {
+      isSubscribed = true;
+    });
+    tick(1000);
+    expect(isSubscribed).toBeTrue();
+  }));
+
 });
