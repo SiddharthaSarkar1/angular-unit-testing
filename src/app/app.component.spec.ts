@@ -3,6 +3,7 @@ import {
   ComponentFixture,
   fakeAsync,
   flush,
+  flushMicrotasks,
   TestBed,
   tick,
 } from '@angular/core/testing';
@@ -104,5 +105,35 @@ describe('AppComponent', () => {
     expect(btnElement[0].nativeElement.textContent).toBe('Subscribed');
     expect(btnElement[0].nativeElement.disabled).toBeTrue();
     //tick(5000);
+  }));
+
+  it('should test the promise', fakeAsync(() => {
+    let counter = 0;
+
+    setTimeout(() => {
+      console.log("First set timeout");
+      counter = counter + 2;
+    }, 2000);
+
+    setTimeout(() => {
+      console.log("Second set timeout");
+      counter = counter + 3;
+    }, 3000);
+
+    Promise.resolve().then(() => {
+      console.log("Promise...");
+      counter = counter + 1;
+    });
+
+    //flush();
+
+    flushMicrotasks();
+    expect(counter).toBe(1);
+
+    tick(2000);
+    expect(counter).toBe(3);
+
+    tick(3000);
+    expect(counter).toBe(6);
   }));
 });
