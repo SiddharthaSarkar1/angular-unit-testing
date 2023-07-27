@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'sid-unit-testing';
+  btnText = "Subscribe";
+  isSubscribed = false;
+
+  subscribe() {
+    this.isSubscribed = true;
+    this.btnText = "Subscribed";
+  }
 }
