@@ -42,10 +42,10 @@ describe('AppComponent', () => {
   // });
 
   it('should render a button with text subscribe', () => {
-    const btnElement = el.queryAll(By.css('.subscribe'));
     component.isSubscribed = false;
-    component.btnText = 'Subscribe';
     fixture.detectChanges();
+    const btnElement = el.queryAll(By.css('.subscribe'));
+    //component.btnText = 'Subscribe';
     expect(btnElement[0].nativeElement.textContent).toBe('Subscribe');
     expect(btnElement[0].nativeElement.disabled).toBeFalse();
   });
@@ -61,11 +61,13 @@ describe('AppComponent', () => {
   // });
 
   it('should render a button with text subscribe and the button should be disabled after click', () => {
-    const btnElement = el.queryAll(By.css('.subscribe'));
     component.isSubscribed = false;
-    component.btnText = 'Subscribe';
+    fixture.detectChanges();
+    let btnElement = el.queryAll(By.css('.subscribe'));
+    // component.btnText = 'Subscribe';
     btnElement[0].nativeElement.click();
     fixture.detectChanges();
+    btnElement = el.queryAll(By.css('.subscribe'));
     expect(btnElement[0].nativeElement.textContent).toBe('Subscribed');
     expect(btnElement[0].nativeElement.disabled).toBeTrue();
   });
