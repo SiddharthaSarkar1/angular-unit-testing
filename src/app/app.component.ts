@@ -11,7 +11,9 @@ export class AppComponent {
   isSubscribed = false;
 
   subscribe() {
+    setTimeout(() => {
       this.isSubscribed = true;
       this.btnText = 'Subscribed';
+    }, 3000);
   }
 }

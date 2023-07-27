@@ -1,5 +1,11 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  flush,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
@@ -60,15 +66,43 @@ describe('AppComponent', () => {
   //   expect(btnElement[0].nativeElement.disabled).toBeTrue();
   // });
 
-  it('should render a button with text subscribe and the button should be disabled after click', () => {
+  // it('should render a button with text subscribe and the button should be disabled after click', (done: DoneFn) => {
+  //   component.isSubscribed = false;
+  //   fixture.detectChanges();
+  //   let btnElement = el.queryAll(By.css('.subscribe'));
+  //   // component.btnText = 'Subscribe';
+  //   btnElement[0].nativeElement.click();
+  //   setTimeout(() => {
+  //     fixture.detectChanges();
+  //     btnElement = el.queryAll(By.css('.subscribe'));
+  //     expect(btnElement[0].nativeElement.textContent).toBe('Subscribed');
+  //     expect(btnElement[0].nativeElement.disabled).toBeTrue();
+  //     done(); //This is to inform jasmine that the async function execution is completed
+  //   }, 3000);
+  // });
+
+  it('should render a button with text subscribe and the button should be disabled after click', fakeAsync(() => {
     component.isSubscribed = false;
     fixture.detectChanges();
     let btnElement = el.queryAll(By.css('.subscribe'));
     // component.btnText = 'Subscribe';
     btnElement[0].nativeElement.click();
-    fixture.detectChanges();
-    btnElement = el.queryAll(By.css('.subscribe'));
+    setTimeout(() => {
+      console.log('Some other test cases!!');
+    }, 8000);
+    setTimeout(() => {
+      fixture.detectChanges();
+      btnElement = el.queryAll(By.css('.subscribe'));
+      //expect(btnElement[0].nativeElement.textContent).toBe('Subscribed');
+      //expect(btnElement[0].nativeElement.disabled).toBeTrue();
+      //done(); //This is to inform jasmine that the async function execution is completed
+    }, 3000);
+
+    flush();
+
+    //tick(3000);
     expect(btnElement[0].nativeElement.textContent).toBe('Subscribed');
     expect(btnElement[0].nativeElement.disabled).toBeTrue();
-  });
+    //tick(5000);
+  }));
 });
