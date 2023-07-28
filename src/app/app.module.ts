@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GradePipe } from './pipes/grade.pipe';
+import { GradeDirective } from './directives/grade.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    GradePipe
+    GradePipe,
+    GradeDirective
   ],
   imports: [
     BrowserModule,
