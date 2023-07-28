@@ -45,9 +45,13 @@ describe('GradeDirective', () => {
     fixture.detectChanges();
     expect(div0.nativeElement.style.color).toBe('green');
 
+    div4.triggerEventHandler('mouseenter', {});
+    fixture.detectChanges();
+    expect(div4.nativeElement.style.color).toBe('blue');
+
     //For last div value is 18 and we are testing here
     div7.triggerEventHandler('mouseenter', {});
     fixture.detectChanges();
-    expect(div0.nativeElement.style.color).toBe('red');
+    expect(div7.nativeElement.style.color).toBe('red');
   });
 });
