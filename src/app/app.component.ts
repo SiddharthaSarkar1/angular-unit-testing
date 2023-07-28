@@ -10,6 +10,8 @@ export class AppComponent {
   btnText = 'Subscribe';
   isSubscribed = false;
 
+  marks = [95, 88, 75, 65, 55, 36, 30, 18];
+
   subscribe() {
     setTimeout(() => {
       this.isSubscribed = true;

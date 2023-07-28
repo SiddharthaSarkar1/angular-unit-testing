@@ -12,6 +12,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { AppComponent } from './app.component';
+import { GradePipe } from './pipes/grade.pipe';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -21,7 +22,10 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [AppComponent],
+      declarations: [
+        AppComponent,
+        GradePipe
+      ],
     })
       .compileComponents()
       .then(() => {
