@@ -49,17 +49,17 @@ describe("App Routing", () => {
         let links = el.queryAll(By.css('a'));
         links[0].nativeElement.click();
         homeFixture.whenStable().then(() => {
-            expect(location.path).toBe('/info');
+            expect(location.path()).toBe('/info');
         })
     }));
 
     it("should navigate to home on clicking the button in info component", waitForAsync(() => {
         infoFixture.detectChanges();
-        let btns = el.queryAll(By.css('button'));
+        let btns = btnEl.queryAll(By.css('button'));
         btns[0].nativeElement.click();
         infoFixture.whenStable().then(() => {
-            expect(location.path).toBe('/home');
-        })
+            expect(location.path()).toBe('/home');
+        }) 
     }));
 
 });
