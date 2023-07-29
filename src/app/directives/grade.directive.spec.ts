@@ -54,4 +54,29 @@ describe('GradeDirective', () => {
     fixture.detectChanges();
     expect(div7.nativeElement.style.color).toBe('red');
   });
+
+  it("should change the text color to black on mouse leave", () => {
+    let divs = el.queryAll(By.css('div'));
+    let div0 = divs[0];
+    let div1 = divs[1];
+    let div2 = divs[2];
+    let div3 = divs[3];
+    let div4 = divs[4];
+    let div5 = divs[5];
+    let div6 = divs[6];
+    let div7 = divs[7];
+    //For first div value is 95 and we are testing here
+    div0.triggerEventHandler('mouseleave', {});
+    fixture.detectChanges();
+    expect(div0.nativeElement.style.color).toBe('black');
+
+    div4.triggerEventHandler('mouseleave', {});
+    fixture.detectChanges();
+    expect(div4.nativeElement.style.color).toBe('black');
+
+    //For last div value is 18 and we are testing here
+    div7.triggerEventHandler('mouseleave', {});
+    fixture.detectChanges();
+    expect(div7.nativeElement.style.color).toBe('black');
+  });
 });
